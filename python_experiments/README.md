@@ -1,4 +1,4 @@
-## Reproducing the Python Experiments in the Paper
+## Reproducing the Python Nearest Neighbor Experiments from the Paper
 
 ### Compiling
 
@@ -15,13 +15,14 @@ mkdir build
 cd build
 cmake -DCMAKE_C_COMPILER=$(which gcc) -DCMAKE_CXX_COMPILER=$(which g++) ..
 make CXX=$(which g++) CC=$(which gcc)
-cp W1.cpython-38-x86_64-linux-gnu.so ../../python
+cp W1.cpython-38-x86_64-linux-gnu.so ../../python_experiments
 cd ../python_experiments/others/w1estimators/native
 mkdir build
 cd build
 cmake -DCMAKE_C_COMPILER=$(which gcc) -DCMAKE_CXX_COMPILER=$(which g++) ..
 make CXX=$(which g++) CC=$(which gcc)
 cp pd_estimators.cpython-38-x86_64-linux-gnu.so ../../../../
+cd ../../../../
 ```
 you might get a different .so file name depending on your python version, operating system and hardware. The prefix W1 and pd_estimators will always be the same.
 
@@ -37,6 +38,7 @@ cd build
 cmake -DCMAKE_C_COMPILER=$(which gcc) -DCMAKE_CXX_COMPILER=$(which g++) ..
 make CXX=$(which g++) CC=$(which gcc)
 cp pd_estimators.cpython-38-x86_64-linux-gnu.so ../../../../
+cd ../../../../
 ```
 
 ### Running the Experiment
@@ -50,14 +52,14 @@ checkout results.txt for results we found upon running `python3 knn_search.py 0`
 **Note:** Most (>99%) of the time in the experiment is spent computing with hera as ground truth. After running once, the ground truth candidates are cached in npz files.
 
 #### knn_search.py
-Let seed be an integer
+Let seed be an integer such as 0
 
 Running `python3 knn_search.py seed` compares all prediction accuracies and timings for each algorithm: quadtree, flowtree, wcd, rwmd, PDoptFlow(s=1), PDoptFlow(s=18), hera individually.
 
 hera is viewed as ground truth, at a guaranteed 1.01 approximation. Only PDoptFlow(s=18) can achieve >=95% accuracy at a guaranteed 2.3 approximation. Surprisingly, PDoptFlow(s=1) achieves more than 80% accuracy. All other algorithms are too rough as approximations to achieve quality nearest neighbor predictions (<=45% prediction accuracy).
 
 #### pipeline.py
-Let seed be an integer
+Let seed be an integer such as 0
 
 Running `python3 pipeline.py seed` runs the pipeline 15-3-1 consisting of flowtree, PDoptFlow(s=1) with PDoptFlow(s=18) finishing. 
 
@@ -65,7 +67,7 @@ Running `python3 pipeline.py seed` runs the pipeline 15-3-1 consisting of flowtr
 
 Illustration of the Pareto frontier of the time-accuracy trade off of various algorithms for computing the 1-Wasserstein distance from knn_search.py.
 
-![pareto frontier](./pareto-boundary-crop.png "time-accuracy pareto frontier")
+![pareto frontier](pareto-boundary-crop.png "time-accuracy pareto frontier")
 **Figure 1** - Pareto Frontier
 
 ### The "others" Directory

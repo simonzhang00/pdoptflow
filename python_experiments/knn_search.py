@@ -1,4 +1,4 @@
-from pdoptflow import W1
+from pdoptflow import W1# change this to import W1 if importing manually
 import numpy as np
 import glob
 import csv
