@@ -1,0 +1,19 @@
+#seed 0:
+
+PDoptFlow(s=18) CORRECT 1-NNs:  97
+QUADTREE CORRECT 1-NNs  1
+FLOWTREE CORRECT 1-NNs  39
+RWMD CORRECT 1-NNs:  30
+WCD CORRECT 1-NNs  38
+PDoptFlow(s=1) CORRECT 1-NNs:  80
+hera(gt) time (0 if load from cached file):  2054.669547557831
+wcd time:  5.861110210418701
+rwmd time:  15.454834938049316
+PDoptFlow(s=18) time:  524.4689946174622
+PDoptFlow(s=1) time:  56.0928213596344
+flowtree time:  4.536828279495239
+quadtree time:  0.30302977561950684
+
+size of bounding box: 299.998
+max depth of quadtree/flowtree: 20
+

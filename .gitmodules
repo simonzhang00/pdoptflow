@@ -1,0 +1,6 @@
+[submodule "pdoptflow/pybind11"]
+	path = pdoptflow/pybind11
+	url = https://github.com/pybind/pybind11
+[submodule "python_experiments/others/w1estimators"]
+	path = python_experiments/others/w1estimators
+	url = https://github.com/simonzhang00/w1estimators
